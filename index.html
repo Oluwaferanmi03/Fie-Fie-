@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fie-Fie Birthday</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:linear-gradient(135deg,#2d1f12,#7a552d,#d4a15a);
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    .screen{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      text-align:center;
+    }
+
+    .hidden{display:none;}
+
+    h1{
+      font-size:2.8rem;
+      margin-bottom:20px; 
+    }
+
+    p{
+      max-width:700px;
+      line-height:1.7;
+    }
+
+    .glow{
+      animation:glow 2s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{ text-shadow:0 0 10px #fff3; }
+      to{ text-shadow:0 0 25px #ffd700; }
+    }
+
+    .btn{
+      margin-top:25px;
+      padding:14px 28px;
+      border:none;
+      border-radius:50px;
+      background:#ffcf70;
+      color:#3b2300;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .btn:hover{ transform:scale(1.05); }
+
+    input{
+      margin-top:15px;
+      padding:14px;
+      width:260px;
+      border-radius:12px;
+      border:none;
+      text-align:center;
+      outline:none;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:15px;
+      width:100%;
+      margin-top:30px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.08);
+      padding:12px;
+      border-radius:20px;
+    }
+
+    .card img,
+    .card video{
+      width:100%;
+      border-radius:15px;
+      display:block;
+    }
+
+    .top-badge{
+      position:fixed;
+      top:15px;
+      right:15px;
+      background:rgba(255,255,255,0.15);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:12px;
+    }
+
+    .typing{
+      overflow:hidden;
+      white-space:nowrap;
+      border-right:2px solid #fff;
+      animation:typing 4s steps(40,end), blink .8s infinite;
+    }
+
+    @keyframes typing{
+      from{width:0;}
+      to{width:100%;}
+    }
+
+    @keyframes blink{
+      50%{border-color:transparent;}
+    }
+
+    .box{
+      margin-top:30px;
+      background:rgba(255,255,255,0.08);
+      padding:20px;
+      border-radius:20px;
+      max-width:650px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <audio autoplay loop>
+    <source src="music/good-days.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="top-badge">⚠️ Fie-Fie Energy Detected</div>
+
+  <!-- PASSWORD -->
+  <section class="screen" id="pass">
+    <h1 class="glow">Access Required 🔐</h1>
+    <input type="password" id="pw" placeholder="Enter password"/>
+    <p>Hint: what you call me</p>
+    <button class="btn" onclick="check()">Unlock 💌</button>
+  </section>
+
+  <!-- MAIN -->
+  <section class="screen hidden" id="main">
+    <h1 class="glow">Happy Birthday Fie 🩷</h1>
+    <p class="typing">You make normal days feel better just by being there.</p>
+    <button class="btn" onclick="showMem()">Open Memories 🩷</button>
+  </section>
+
+  <!-- MEMORIES -->
+  <section class="screen hidden" id="mem">
+    <h1>Fie-Fie Memories 📸</h1>
+
+    <div class="gallery">
+
+      <div class="card">
+        <img src="images/photo1.jpg">
+      </div>
+
+      <div class="card">
+        <img src="images/photo2.jpg">
+      </div>
+
+      <div class="card">
+        <video controls>
+          <source src="videos/video1.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="card">
+        <video controls>
+          <source src="videos/video2.mp4" type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+
+    <div class="box">
+      <p>You survived another year of my stress 😭😂</p>
+      <p>But I’m genuinely glad I know you ❤️</p>
+
+      <button class="btn" onclick="final()">One Last Thing 💌</button>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="screen hidden" id="final">
+    <h1 class="glow">🎉 Surprise</h1>
+    <p>You unlocked unlimited annoying texts from me 😂</p>
+    <button class="btn" onclick="location.reload()">Replay 🔁</button>
+  </section>
+
+  <script>
+    function check(){
+      const pw = document.getElementById("pw").value.toLowerCase();
+      if(pw === "ferry"){
+        document.getElementById("pass").classList.add("hidden");
+        document.getElementById("main").classList.remove("hidden");
+      }else{
+        alert("Wrong password 😭 hint: what you call me");
+      }
+    }
+
+    function showMem(){
+      document.getElementById("main").classList.add("hidden");
+      document.getElementById("mem").classList.remove("hidden");
+    }
+
+    function final(){
+      document.getElementById("mem").classList.add("hidden");
+      document.getElementById("final").classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
